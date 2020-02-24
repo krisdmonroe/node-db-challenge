@@ -18,6 +18,7 @@ function getResource(){
 function addResource(resource){
     return db("resource").insert(resource, "id")
 }
+
 function getProject(){
     return db("project")
 }
@@ -25,8 +26,12 @@ function getProject(){
 function addProject(project){
     return db("project").insert(project, "id")
 }
-function getTask(){
-    return db("task")
+
+function getTask(id){
+    return db("project")
+    .join("task","task.project_id","project.id")
+    .select("*")
+    .where({'task.project_id': id})
 }
 
 function addTask(task){

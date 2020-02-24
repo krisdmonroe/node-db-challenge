@@ -57,10 +57,11 @@ router.get('/resource', (req, res) => {
    });
  });
  
- router.get('/task', (req, res) => {
-    P.getTask()
+ router.get('/:id/task', (req, res) => {
+     const id = req.params.id
+    P.getTask(id)
     .then(task => {
-        res.json(task)
+        res.status(200).json(task)
     })
     .catch(err => {
      res.status(500).json({ message: 'Failed to get task' });
